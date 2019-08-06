@@ -1,10 +1,17 @@
-import config from './config';
+const config = require('./config')
 const { Pool, Client } = require('pg')
-let app = require('express').express();
+let app = require('express')()
 let votes = require('./votes/routes')
+let bodyParser = require('body-parser');
+let cors = require('cors')
 
 const client = new Client(config.postgres)
-client.connect()
+
+client.connect().catch(console.log)
+
+app.use(cors())
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use('/votes', votes(client))
 
 app.listen(3000, function () {
