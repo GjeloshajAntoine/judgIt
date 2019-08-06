@@ -8,9 +8,15 @@ module.exports = function (db) {
 
     })
 
-    router.get('/colorTotal/:url',(req,res)=>{
-        voteModel.getColorTotalUrl(req.params.url)
-        .then(res.send)
+    router.post('/colorTotal',(req,res)=>{
+        console.log('requested url',req.body.url);
+        
+        voteModel.getColorTotalUrl(req.body.url)
+        .then(data=>{
+            console.log('for url',req.body.url);   
+            console.log('res data :',data)
+            res.json(data)
+        })
     })
 
     router.post('/upVote',(req,res)=>{
