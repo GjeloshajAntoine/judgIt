@@ -35,8 +35,16 @@ body{
     /* width: fit-content; */
     width: 60%;
     font-family: '518';
-    border-color: yellow;
     border: 3px #ffeb00 solid;
+}
+#votetext[data-color="green"]{    
+    border-color: lime;
+}
+#votetext[data-color="yellow"]{    
+    border-color: yellow;
+}
+#votetext[data-color="red"]{    
+    border-color: red;
 }
 .colors-picker{
     width: 40%;
@@ -47,10 +55,14 @@ body{
     border: none;
     border-radius: 100%;
     color: #f0f8ff00;
+    display: inline-block;
+}
+.colors-picker .cbt:hover{
+    cursor: pointer;
 }
 .colors-picker .cbt.selected{
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
 }
 .green{
     background-color: #00f13f;
