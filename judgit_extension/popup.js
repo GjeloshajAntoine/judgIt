@@ -11,3 +11,18 @@ currentTab.then(tabs=>{
     document.querySelector('#title').innerText = tabs[0].title
     document.getElementById('url').innerText = tabs[0].url
 })
+let app = new Vue({
+    el: '#new-entry',
+    data: {
+      color:'yellow',
+      colorVotes:[]
+    },
+    methods:{
+        switchColor:function (event) {
+            this.color = event.target.dataset.color
+        },
+        sendVote:function () {
+            
+        }
+    }
+  })
