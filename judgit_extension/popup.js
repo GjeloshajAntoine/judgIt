@@ -8,5 +8,6 @@ let currentTab = new Promise((resolve,reject)=>chrome.tabs.query({ active: true,
 currentTab.then(tabs=>{
     console.log(tabs[0]);
     tabs[0].title
+    document.querySelector('#title').innerText = tabs[0].title
     document.getElementById('url').innerText = tabs[0].url
 })
