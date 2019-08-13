@@ -8,20 +8,19 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="popup.css" rel="stylesheet">
     <!-- <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" /> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="popup.js"></script>
+    <script src="vue.js"></script>
 </head>
 <body>
     <div class="popup-container">
         <p class="title" id="title">Container.is-centered</p>
         <p id="url">Good morning. Thou hast had a good night's sleep, I hope.</p>
         <div id="new-entry">
-            <input type="text" id="votetext" class="nes-input">
+            <input type="text" v-bind:data-color="color" id="votetext" class="nes-input" placeholder="........">
             <span class="colors-picker">
-                <button type="button" class="cbt green">.</button>
-                <button type="button" class="cbt yellow">.</button>
-                <button type="button" class="cbt red">.</button>
-                <div  class="bt-addnew">+1</div>
+                <div type="button" data-color="green" v-on:click="switchColor" class="cbt green"  v-bind:class="{ selected: color =='green'}">.</div>
+                <div type="button" data-color="yellow" v-on:click="switchColor"  class="cbt yellow" v-bind:class="{ selected: color =='yellow'}">.</div>
+                <div type="button" data-color="red" v-on:click="switchColor" class="cbt red"    v-bind:class="{ selected: color =='red'}">.</div>
+                <div v-on:click="sendVote"  class="bt-addnew">+1</div>
             </span>
         </div>
         <div id="colors-list">
@@ -44,6 +43,7 @@
                 </div>
         </div>
     </div>
+    <script src="popup.js"></script>
 </body>
 
 </html>

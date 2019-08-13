@@ -1,20 +1,32 @@
 {
-    "name": "JudgIt",
-    "version": "0.1",
-    "description": "judge pages",
-    "manifest_version": 2,
-    "permissions": [
-        "activeTab",
-        "tabs", "<all_urls>"
+  "name": "JudgIt",
+  "version": "0.1",
+  "description": "judge pages",
+  "manifest_version": 2,
+  "sandbox": {
+    "pages": [
+      "popup.html"
+    ]
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
       ],
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "css": ["contentStyle.css"],
-            "js": ["contentScript.js"]
-        }
-    ],
-    "browser_action": {
-      "default_popup": "popup.html"
-    }    
+      "css": [
+        "contentStyle.css"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
   }
+}
