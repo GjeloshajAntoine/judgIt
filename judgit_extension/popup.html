@@ -6,20 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <link href="popup.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="popup.js"></script>
 </head>
 <body>
-    <div style="margin: 10px;" class="nes-container with-title is-centered">
-        <p class="title">Container.is-centered</p>
+    <div class="popup-container">
+        <p class="title" id="title">Container.is-centered</p>
         <p id="url">Good morning. Thou hast had a good night's sleep, I hope.</p>
-        <div class="nes-field">
-            <label for="name_field">add</label>
-            <input type="text" id="name_field" class="nes-input">
-          </div>      
-        <button type="button" class="nes-btn is-success"></button>
-        <button type="button" class="nes-btn is-warning"></button>
-        <button type="button" class="nes-btn is-error"></button>
+        <div id="new-entry">
+            <input type="text" id="votetext" class="nes-input">
+            <span class="colors-picker">
+                <button type="button" class="cbt green">.</button>
+                <button type="button" class="cbt yellow">.</button>
+                <button type="button" class="cbt red">.</button>
+                <div  class="bt-addnew">+1</div>
+            </span>
+        </div>
+        <div id="colors-list">
+            <div class="color-line">
+                <div style="float: left;" class="plus-one">+1</div>
+                <div class="color-bar red-bar">
+                        <span style="
+                        z-index: 2;
+                        position: absolute;
+                        color: #d80505;
+                        font-size: 15px;
+                        font-family: inherit;
+                    ">spawn</span>
+                    <div class="color-bar-filling"></div>
+                </div>
+            </div>
+            <div class="color-line">
+                    <div style="float: left;" class="plus-one selected">+1</div>
+                    <div class="color-bar red-bar"><div class="color-bar-filling"></div></div>
+                </div>
+        </div>
     </div>
 </body>
-</html> 
+
+</html>
