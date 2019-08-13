@@ -4,6 +4,7 @@ console.log('contentscipt_');
 
 document.querySelectorAll('a').forEach(e=> {
     console.log('before fetch');
+    e.style.backgroundImage = colorLineGraph()
     let url = e.href
     if (!url) return ;
     fetch('http://localhost:3000/votes/colorTotal',
@@ -33,6 +34,9 @@ document.querySelectorAll('a').forEach(e=> {
 })
 
 
+// function colorLineGraph(green,yellow,red) {
+//     return 'linear-gradient(transparent, transparent),linear-gradient(transparent, transparent),linear-gradient(to right, #30e8bf, #F90F00)'
+// }
 function colorLineGraph(green,yellow,red) {
-    return 'linear-gradient(transparent, transparent),linear-gradient(transparent, transparent),linear-gradient(to right, #30e8bf, #F90F00)'
+    return 'background: linear-gradient(90deg, rgba(1,255,50,1) 0%, rgba(249,255,0,1) 50%, rgba(255,0,0,1) 100%)'
 }
