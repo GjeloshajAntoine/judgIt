@@ -119,3 +119,10 @@ body{
 
     border-radius: 3px;
 }
+.color-bar-text {
+    z-index: 2;
+    position: absolute;
+    font-size: 15px;
+    font-family: inherit;
+
+}
