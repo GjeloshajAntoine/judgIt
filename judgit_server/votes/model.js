@@ -1,5 +1,8 @@
 module.exports = function (db) {
     return {
+        getLinkId : function (url) {
+            return db.query('SELECT id FROM links WHERE url = $1',[url]).then(data=>data.rows.length?data.rows[0]:{id:0})
+        },
         getVotes : function (url, userId) {
             return db.query(`SELECT vt.text,color,SUM(CASE WHEN user_id = $1 THEN 1 ELSE 0 END) as is_upvoted_by_current_user ,count(*)as nbr
             FROM votes

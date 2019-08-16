@@ -3,6 +3,9 @@ const voteModelUnInit = require('./model')
 
 module.exports = function (db) {
     const voteModel = voteModelUnInit(db)
+    router.post('/linkId',(req,res)=>{
+        voteModel.getLinkId(req.body.url).then(res.json)
+    })
 
     router.get('/votes',(req,res)=>{
         let {url} = req.body
