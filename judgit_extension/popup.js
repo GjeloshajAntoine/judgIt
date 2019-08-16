@@ -1,3 +1,4 @@
+// import { link } from "fs";
 
 // chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
 //     let tab = tabs[0]
@@ -7,16 +8,13 @@
 let currentTab = new Promise((resolve, reject) => chrome.tabs.query({ active: true, currentWindow: true }, resolve))
 const urlProm = currentTab.then(tabs => {
     console.log(tabs[0]);
-    tabs[0].title
     document.querySelector('#title').innerText = tabs[0].title
     document.getElementById('url').innerText = tabs[0].url
     return  tabs[0].url;
 })
 
-
-
 fapi = NewFapi('http://localhost:3000')
-let linkIdProm = urlProm.then(url=> fapi('votes/getLinkId',jsonPostBody({url,url}))) 
+let linkIdProm = urlProm.then(url=> fapi('/votes/linkId',jsonPostBody({url,url}))).then(data=>data.url) 
 
 let app = new Vue({
     el: '#view-root',
@@ -24,10 +22,11 @@ let app = new Vue({
         color: 'yellow',
         colorVotes: [
             {
-                color: 'green',
+                color: 'yellow',
                 text: 'spawn',
                 text_id:2,
                 nbr: 285,
+                percentage:50,
                 is_upvoted_by_current_user: 0
             },
             {
@@ -35,6 +34,7 @@ let app = new Vue({
                 text: 'you 50ct',
                 text_id:4,
                 nbr: 285,
+                percentage:50,
                 is_upvoted_by_current_user: 1
             }
         ]
@@ -45,11 +45,27 @@ let app = new Vue({
         },
         sendVote: async function (event) {
             let text = event.target.innerText
-            await fapi('vote/CreateOrUpVote')
+            let color = this.color
+            let linkId = await linkIdProm
+            (linkId ? fapi('/votes/CreateOrUpVoteLinkId',jsonPostBody({linkId:linkId,text:text,color:color})) :
+            fapi('/votes/CreateOrUpVoteLinkUrl',jsonPostBody({url:await urlProm,text:text,color:color}))
+            )
+            .then(async o=>{
+                if (await linkIdProm) {
+                    return linkIdProm
+                }else {
+                    linkIdProm = fapi('/votes/linkId',jsonPostBody({url : await urlProm})).then(data=>data.url) 
+                    return  linkIdProm
+                }
+            })
+            .then(async o=>fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})))
+            .then(votes=>{this.colorVotes = votes})
         },
         upVote: async function (event) {
             let textId = event.target.dataset['text-id']
-            let linkId = await linkIdProm
+            fapi('/votes/upvote',jsonPostBody({textId:textId}))
+            .then(async o=>fapi('/votes/',{linkId:await linkIdProm}))
+            .then(votes=>this.colorVotes = votes)
         }
     }
 })
