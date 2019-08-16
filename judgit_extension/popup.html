@@ -11,7 +11,7 @@
     <script src="vue.js"></script>
 </head>
 <body>
-    <div class="popup-container">
+    <div class="popup-container" id="view-root">
         <p class="title" id="title">Container.is-centered</p>
         <p id="url">Good morning. Thou hast had a good night's sleep, I hope.</p>
         <div id="new-entry">
@@ -24,23 +24,13 @@
             </span>
         </div>
         <div id="colors-list">
-            <div class="color-line">
-                <div style="float: left;" class="plus-one">+1</div>
-                <div class="color-bar red-bar">
-                        <span style="
-                        z-index: 2;
-                        position: absolute;
-                        color: #d80505;
-                        font-size: 15px;
-                        font-family: inherit;
-                    ">spawn</span>
+            <div v-for="vote of colorVotes" class="color-line" >
+                <div style="float: left;" class="plus-one selected"  v-bind:class="{ selected:vote.is_upvoted_by_current_user}">+1</div>
+                <div class="color-bar red-bar"  v-bind:data-color="vote.color">
+                    <span style="color: #d80505;" v-bind:data-color="vote.color"  class="color-bar-text">{{vote.text}}</span>
                     <div class="color-bar-filling"></div>
                 </div>
             </div>
-            <div class="color-line">
-                    <div style="float: left;" class="plus-one selected">+1</div>
-                    <div class="color-bar red-bar"><div class="color-bar-filling"></div></div>
-                </div>
         </div>
     </div>
     <script src="popup.js"></script>
