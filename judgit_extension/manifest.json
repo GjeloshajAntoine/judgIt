@@ -3,11 +3,6 @@
   "version": "0.1",
   "description": "judge pages",
   "manifest_version": 2,
-  "sandbox": {
-    "pages": [
-      "popup.html"
-    ]
-  },
   "permissions": [
     "activeTab",
     "tabs",
@@ -26,6 +21,7 @@
       ]
     }
   ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "browser_action": {
     "default_popup": "popup.html"
   }
