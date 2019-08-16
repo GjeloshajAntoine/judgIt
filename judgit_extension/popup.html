@@ -17,18 +17,20 @@
         <div id="new-entry">
             <input type="text" v-bind:data-color="color" id="votetext" class="nes-input" placeholder="........">
             <span class="colors-picker">
-                <div type="button" data-color="green" v-on:click="switchColor" class="cbt green"  v-bind:class="{ selected: color =='green'}">.</div>
+                <div type="button" data-color="green" v-on:click="switchColor" class="cbt green" v-bind:class="{ selected: color =='green'}">.</div>
                 <div type="button" data-color="yellow" v-on:click="switchColor"  class="cbt yellow" v-bind:class="{ selected: color =='yellow'}">.</div>
-                <div type="button" data-color="red" v-on:click="switchColor" class="cbt red"    v-bind:class="{ selected: color =='red'}">.</div>
+                <div type="button" data-color="red" v-on:click="switchColor" class="cbt red" v-bind:class="{ selected: color =='red'}">.</div>
                 <div v-on:click="sendVote"  class="bt-addnew">+1</div>
             </span>
         </div>
         <div id="colors-list">
             <div v-for="vote of colorVotes" class="color-line" >
-                <div style="float: left;" class="plus-one selected"  v-bind:class="{ selected:vote.is_upvoted_by_current_user}">+1</div>
-                <div class="color-bar red-bar"  v-bind:data-color="vote.color">
-                    <span style="color: #d80505;" v-bind:data-color="vote.color"  class="color-bar-text">{{vote.text}}</span>
-                    <div class="color-bar-filling"></div>
+                <div style="float: left;" v-on:click="upVote" class="plus-one" v-bind:data-text-id="vote.text_id"  v-bind:class="{ selected:vote.is_upvoted_by_current_user }">
+                    +1
+                </div>
+                <div class="color-bar" v-bind:data-color="vote.color">
+                    <span v-bind:data-color="vote.color" class="color-bar-text">{{vote.text}}</span>
+                    <div class="color-bar-filling"  v-bind:data-color="vote.color"></div>
                 </div>
             </div>
         </div>
