@@ -107,22 +107,42 @@ body{
     border-style: solid;
     width: 90%;
 }
-.red-bar{
-    border-color: red;
-
+.color-bar[data-color="green"]{
+    border-color: green;
 }
+.color-bar[data-color="yellow"]{
+    border-color: yellow;
+}
+.color-bar[data-color="red"]{
+    border-color: red;
+}
+
 .color-bar-filling{
     height: 1.5em;
     width: 60%;
-    background-color: #ff0000;
-    background-color: #ff9595;
-
     border-radius: 3px;
+}
+.color-bar-filling[data-color="green"]{
+    background-color: #b4ff95;
+}
+.color-bar-filling[data-color="yellow"]{
+    background-color: #f8ff95;
+}
+.color-bar-filling[data-color="red"]{
+    background-color: #ff9595;
 }
 .color-bar-text {
     z-index: 2;
     position: absolute;
     font-size: 15px;
     font-family: inherit;
-
+}
+.color-bar-text[data-color="green"]{
+    color: #05d817;
+}
+.color-bar-text[data-color="yellow"]{
+    color:  #d8c005;
+}
+.color-bar-text[data-color="red"]{
+    color: #d80505;
 }
