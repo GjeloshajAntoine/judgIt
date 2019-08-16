@@ -4,7 +4,11 @@ const voteModelUnInit = require('./model')
 module.exports = function (db) {
     const voteModel = voteModelUnInit(db)
     router.post('/linkId',(req,res)=>{
-        voteModel.getLinkId(req.body.url).then(res.json)
+        voteModel.getLinkId(req.body.url).then(data=>{
+            console.warn(data);
+            
+            res.json(data)
+        }).catch(console.warn)
     })
 
     router.get('/votes',(req,res)=>{
@@ -28,13 +32,13 @@ module.exports = function (db) {
 
     })
 
-    router.post('/CreateOrUpVote',(req,res)=>{
-        let {url,linkId,text,color} = req.body
-        (linkID? voteModel.CreateOrUpVoteLinkId(url,userId,text,color):
-        voteModel.CreateOrUpVoteLinkUrl(linkId,userId,text,color))
-        .then((data)=>{
-
-        })
+    router.post('/CreateOrUpVoteLinkId',(req,res)=>{
+        let {linkId,text,color} = req.body
+        voteModel.CreateOrUpVoteLinkId(linkId,userId,text,color)
+    })
+    router.post('/CreateOrUpVoteLinkUrl',(req,res)=>{
+        let {url,text,color} = req.body
+        voteModel.CreateOrUpVoteLinkUrl(url,userId,text,color)
     })
 
     return router

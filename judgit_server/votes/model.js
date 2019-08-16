@@ -1,10 +1,10 @@
 module.exports = function (db) {
     return {
         getLinkId : function (url) {
-            return db.query('SELECT id FROM links WHERE url = $1',[url]).then(data=>data.rows.length?data.rows[0]:{id:0})
+            return db.query('SELECT id FROM links WHERE url = $1',[url]).then(data=>data.rows.length?data.rows[0]:{id:0}).catch(console.error)
         },
         getVotes : function (url, userId) {
-            return db.query(`SELECT vt.text,color,SUM(CASE WHEN user_id = $1 THEN 1 ELSE 0 END) as is_upvoted_by_current_user ,count(*)as nbr
+            return db.query(`SELECT vt.text,color,SUM(CASE WHEN user_id = $1 THEN 1 ELSE 0 END) as is_upvoted_by_current_user ,count(*)as nbr,(COUNT(*) / SUM(COUNT(*)) OVER ()) AS percentage
             FROM votes
             RIGHT JOIN links ON links.id = votes.link_id
             LEFT JOIN votetexts vt ON vt.id = text_id
