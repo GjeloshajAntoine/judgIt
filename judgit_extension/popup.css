@@ -41,7 +41,7 @@ body{
     border-color: lime;
 }
 #votetext[data-color="yellow"]{    
-    border-color: yellow;
+    border-color: #ffeb00;
 }
 #votetext[data-color="red"]{    
     border-color: red;
@@ -79,6 +79,7 @@ body{
     width: auto;
     padding-left: 5px;
     height: auto;
+    cursor: pointer;
 }
 #colors-list{
     width: 100%;
@@ -95,6 +96,7 @@ body{
     width: 7%;
     height: 1.5em;
     display: inline-block;
+    cursor: pointer;
 }
 .plus-one.selected{
     border: 2px black solid;
@@ -111,7 +113,7 @@ body{
     border-color: green;
 }
 .color-bar[data-color="yellow"]{
-    border-color: yellow;
+    border-color: #ffeb00;
 }
 .color-bar[data-color="red"]{
     border-color: red;
