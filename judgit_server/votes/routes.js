@@ -34,10 +34,12 @@ module.exports = function (db) {
 
     router.post('/CreateOrUpVoteLinkId',(req,res)=>{
         let {linkId,text,color} = req.body
+        let userId = 1
         voteModel.CreateOrUpVoteLinkId(linkId,userId,text,color)
     })
     router.post('/CreateOrUpVoteLinkUrl',(req,res)=>{
         let {url,text,color} = req.body
+        let userId = 1
         voteModel.CreateOrUpVoteLinkUrl(url,userId,text,color)
     })
 
