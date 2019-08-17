@@ -15,11 +15,11 @@
         <p class="title" id="title">Container.is-centered</p>
         <p id="url">Good morning. Thou hast had a good night's sleep, I hope.</p>
         <div id="new-entry">
-            <input type="text" v-bind:data-color="color" id="votetext" class="nes-input" placeholder="........">
+            <input type="text" v-bind:data-color="input.color" id="votetext" class="nes-input" placeholder="........"  v-model="input.text">
             <span class="colors-picker">
-                <div type="button" data-color="green" v-on:click="switchColor" class="cbt green" v-bind:class="{ selected: color =='green'}">.</div>
-                <div type="button" data-color="yellow" v-on:click="switchColor"  class="cbt yellow" v-bind:class="{ selected: color =='yellow'}">.</div>
-                <div type="button" data-color="red" v-on:click="switchColor" class="cbt red" v-bind:class="{ selected: color =='red'}">.</div>
+                <div type="button" data-color="green" v-on:click="switchColor" class="cbt green" v-bind:class="{ selected: input.color =='green'}">.</div>
+                <div type="button" data-color="yellow" v-on:click="switchColor"  class="cbt yellow" v-bind:class="{ selected: input.color =='yellow'}">.</div>
+                <div type="button" data-color="red" v-on:click="switchColor" class="cbt red" v-bind:class="{ selected: input.color =='red'}">.</div>
                 <div v-on:click="sendVote"  class="bt-addnew">+1</div>
             </span>
         </div>
