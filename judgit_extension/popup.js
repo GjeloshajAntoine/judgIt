@@ -14,12 +14,15 @@ const urlProm = currentTab.then(tabs => {
 })
 
 fapi = NewFapi('http://localhost:3000')
-let linkIdProm = urlProm.then(url=> fapi('/votes/linkId',jsonPostBody({url,url}))).then(data=>data.url) 
+let linkIdProm = urlProm.then(url=> fapi('/votes/linkId',jsonPostBody({url,url}))).then(resp=>resp.json()).then(data=>data.id) 
 
 let app = new Vue({
     el: '#view-root',
     data: {
-        color: 'yellow',
+        input:{
+            color:'yellow',
+            text:''
+        },
         colorVotes: [
             {
                 color: 'yellow',
@@ -39,14 +42,21 @@ let app = new Vue({
             }
         ]
     },
+    created:async function () {
+       await linkIdProm ? fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})).then(res=>res.json())
+       .then(data=>this.colorVotes=data) 
+       : ''
+    },
     methods: {
         switchColor: function (event) {
-            this.color = event.target.dataset.color
+            this.input.color = event.target.dataset.color
         },
         sendVote: async function (event) {
-            let text = event.target.innerText
-            let color = this.color
-            let linkId = await linkIdProm
+            let text = this.input.text
+            let color = this.input.color
+            let linkId = await linkIdProm;
+            //console.warn(linkId);
+            
             (linkId ? fapi('/votes/CreateOrUpVoteLinkId',jsonPostBody({linkId:linkId,text:text,color:color})) :
             fapi('/votes/CreateOrUpVoteLinkUrl',jsonPostBody({url:await urlProm,text:text,color:color}))
             )
@@ -59,6 +69,7 @@ let app = new Vue({
                 }
             })
             .then(async o=>fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})))
+            .then(res=>res.json())
             .then(votes=>{this.colorVotes = votes})
         },
         upVote: async function (event) {
