@@ -11,10 +11,10 @@ module.exports = function (db) {
         }).catch(console.warn)
     })
 
-    router.get('/votes',(req,res)=>{
-        let {url} = req.body
-        voteModel.getVotes(url)
-        .then(res.json)
+    router.post('/votes',(req,res)=>{
+        let {linkId} = req.body
+        voteModel.getVotes(linkId,1)
+        .then(res.json.bind(res))
     })
 
     router.post('/colorTotal',(req,res)=>{
@@ -35,12 +35,12 @@ module.exports = function (db) {
     router.post('/CreateOrUpVoteLinkId',(req,res)=>{
         let {linkId,text,color} = req.body
         let userId = 1
-        voteModel.CreateOrUpVoteLinkId(linkId,userId,text,color)
+        voteModel.CreateOrUpVoteLinkId(linkId,userId,text,color).then(res.json.bind(res))
     })
     router.post('/CreateOrUpVoteLinkUrl',(req,res)=>{
         let {url,text,color} = req.body
         let userId = 1
-        voteModel.CreateOrUpVoteLinkUrl(url,userId,text,color)
+        voteModel.CreateOrUpVoteLinkUrl(url,userId,text,color).then(res.json.bind(res))
     })
 
     return router
