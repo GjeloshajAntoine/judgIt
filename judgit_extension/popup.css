@@ -123,6 +123,8 @@ body{
     height: 1.5em;
     width: 60%;
     border-radius: 3px;
+    z-index: 2;
+    position: absolute;
 }
 .color-bar-filling[data-color="green"]{
     background-color: #b4ff95;
@@ -134,10 +136,20 @@ body{
     background-color: #ff9595;
 }
 .color-bar-text {
-    z-index: 2;
-    position: absolute;
+    /* z-index: 2; */
+    /* position: absolute; */
     font-size: 15px;
     font-family: inherit;
+    z-index: 2;
+    display: block;
+    position: absolute;
+    width: inherit;
+}
+.color-bar-percentage{
+    position: relative;
+    display: inline;
+    float: right;
+    width: fit-content;
 }
 .color-bar-text[data-color="green"]{
     color: #05d817;
