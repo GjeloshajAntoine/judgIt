@@ -4,7 +4,7 @@ module.exports = function (db) {
             return db.query('SELECT id FROM links WHERE url = $1',[url]).then(data=>data.rows.length?data.rows[0]:{id:0}).catch(console.error)
         },
         getVotes : function (linkId, userId) {
-            return db.query(`SELECT vt.text,color,SUM(CASE WHEN user_id = $1 THEN 1 ELSE 0 END) as is_upvoted_by_current_user ,count(*)as nbr,((COUNT(*) / SUM(COUNT(*)) OVER ())*100) AS percentage
+            return db.query(`SELECT text_id,vt.text,color,SUM(CASE WHEN user_id = $1 THEN 1 ELSE 0 END) as is_upvoted_by_current_user ,count(*)as nbr,((COUNT(*) / SUM(COUNT(*)) OVER ())*100) AS percentage
             FROM votes
             RIGHT JOIN links ON links.id = votes.link_id
             LEFT JOIN votetexts vt ON vt.id = text_id
@@ -26,18 +26,18 @@ module.exports = function (db) {
                 return data.rows.length?data.rows[0]:{}
             }).catch(console.error);
         },
-        upVote : function (userId,linkId,text_id) {
-            return db.query('INSERT INTO votes(user_id,link_id,text_id) VALUES($1,$2,$3)',
-            [userId,linkId,text_id]).then(data=>{
+        upVote : function (userId,linkId,text_id,color) {
+            return db.query('INSERT INTO votes(user_id,link_id,text_id,color) VALUES($1,$2,$3,$4)',
+            [userId,linkId,text_id,color]).then(data=>{
                 return data.rows
             })
         },
-        unVote : function (userId,linkId,text_id) {
+        unVote : function (userId,linkId,text_id,color) {
             return db.query('DELETE FROM votes WHERE user_id = $1 AND lind_id = $2 AND text_id = $3',
             [userId,linkId,text_id]).then(data=>{
                 return data.rows
             })
-        }
+        },
         CreateOrUpVoteLinkId : function (linkId,userId,VoteText,VoteColor) {
             //"SELECT CreateOrUpVoteLinkId(1,1,'other new comment','')"
             return  db.query('SELECT  CreateOrUpVoteLinkId($1,$2,$3,$4::colors)', 
