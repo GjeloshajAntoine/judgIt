@@ -64,7 +64,7 @@ let app = new Vue({
                 if (await linkIdProm) {
                     return linkIdProm
                 }else {
-                    linkIdProm = fapi('/votes/linkId',jsonPostBody({url : await urlProm})).then(data=>data.url) 
+                    linkIdProm = fapi('/votes/linkId',jsonPostBody({url : await urlProm})).then(resp=>resp.json()).then(data=>data.id) 
                     return  linkIdProm
                 }
             })
@@ -73,9 +73,12 @@ let app = new Vue({
             .then(votes=>{this.colorVotes = votes})
         },
         upVote: async function (event) {
-            let textId = event.target.dataset['text-id']
-            fapi('/votes/upvote',jsonPostBody({textId:textId}))
-            .then(async o=>fapi('/votes/',{linkId:await linkIdProm}))
+            let textId = event.target.dataset.textId
+            let color = event.target.dataset.color
+            fapi('/votes/upvote',jsonPostBody({textId:textId,linkId: await linkIdProm,color:color}))
+            .then(resp=>resp.json())
+            .then(async o=>fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})))
+            .then(resp=>resp.json())
             .then(votes=>this.colorVotes = votes)
         }
     }
