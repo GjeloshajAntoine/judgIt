@@ -27,6 +27,18 @@ module.exports = function (db) {
         })
     })
 
+    router.post('/colorTotalBulk',(req,res)=>{
+        let {urls} = req.body.urls
+        let urlsAndColorsProms = urls.map(url=>{
+            return voteModel.getColorTotalUrl(url).then(colors=>{
+                colors.url = url // add colors to the totals so we can associate
+                return colors
+            })
+        })
+        Promise.all(urlsAndColorsProms)
+        .then(urlsAndColors=>res.json(urlsAndColors))
+    })
+
     router.post('/upVote',(req,res)=>{
         let {linkId,textId,color} = req.body
         voteModel.upVote(2,linkId,textId,color).then(o=>res.json(o))
