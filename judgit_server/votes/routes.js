@@ -28,8 +28,8 @@ module.exports = function (db) {
     })
 
     router.post('/upVote',(req,res)=>{
-        let {linkId} = req.body
-
+        let {linkId,textId,color} = req.body
+        voteModel.upVote(2,linkId,textId,color).then(o=>res.json(o))
     })
 
     router.post('/CreateOrUpVoteLinkId',(req,res)=>{
