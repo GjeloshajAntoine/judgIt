@@ -28,7 +28,7 @@ module.exports = function (db) {
     })
 
     router.post('/colorTotalBulk',(req,res)=>{
-        let {urls} = req.body.urls
+        let {urls} = req.body
         let urlsAndColorsProms = urls.map(url=>{
             return voteModel.getColorTotalUrl(url).then(colors=>{
                 colors.url = url // add colors to the totals so we can associate
