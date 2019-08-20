@@ -29,13 +29,13 @@
                     +1
                 </div>
                 <div class="color-bar" v-bind:data-color="vote.color">
-                    <div class="color-bar-filling"  v-bind:data-color="vote.color"></div>
                     <span v-bind:data-color="vote.color" class="color-bar-text">{{vote.text}}</span>
                     <div class="color-bar-percentage" v-bind:data-color="vote.color">{{vote.percentage}}%</div> 
+                    <div class="color-bar-filling" v-bind:style="{width:vote.percentage+'%'}"  v-bind:data-color="vote.color"></div>
                 </div>
             </div>
         </div>
-        <div v-if="colorVotes.length == 0">
+        <div  style="text-align: center;color: #80808061;" class="title" v-if="colorVotes.length == 0">
             nothing yet
         </div>
     </div>
