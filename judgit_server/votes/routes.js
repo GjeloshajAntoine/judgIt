@@ -1,7 +1,7 @@
 let router = require('express').Router();
 const voteModelUnInit = require('./model')
 
-module.exports = function (db) {
+module.exports = function (db, usersMiddelware) {
     const voteModel = voteModelUnInit(db)
     router.post('/linkId',(req,res)=>{
         voteModel.getLinkId(req.body.url).then(data=>{
@@ -39,7 +39,7 @@ module.exports = function (db) {
         .then(urlsAndColors=>res.json(urlsAndColors))
     })
 
-    router.post('/upVote',(req,res)=>{
+    router.post('/upVote',usersMiddelware.connected,(req,res)=>{
         let {linkId,textId,color} = req.body
         voteModel.upVote(2,linkId,textId,color).then(o=>res.json(o))
     })
