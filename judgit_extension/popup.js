@@ -23,7 +23,10 @@ let app = new Vue({
             color:'yellow',
             text:''
         },
-        colorVotes: [
+        colorVotes:[
+
+        ],
+        colorVotesExample: [
             {
                 color: 'yellow',
                 text: 'spawn',
