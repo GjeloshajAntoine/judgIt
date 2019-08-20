@@ -38,8 +38,40 @@ function oneByone() {
     })  
 }
 
+function ByBulk() {
+    let aElems = Array.from( document.querySelectorAll('a'))
+    let urls = aElems.map(e=>{
+        return e.href
+    }) 
+    fetch('http://localhost:3000/votes/colorTotalBulk',
+    {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({urls: urls})
+      }
+    )
+    .then(res=>res.json())
+    .then(data=>{
+        data.forEach(colorTotal=>{
+            let{green,yellow,red,url} = colorTotal
+            colorTotal = green+yellow+red
+            green = ((parseFloat(green) / parseFloat(colorTotal))*100)
+            yellow = ((parseFloat(yellow) / parseFloat(colorTotal))*100)
+            red = ((parseFloat(red) / parseFloat(colorTotal))*100)
+            if(!green) {//dummy data
+                green = 30
+                yellow = 50
+                red = 20
+            }
+            document.styleSheets[0].addRule(`a[href="${url}"]:hover::after{background:${colorLineGraph(green,yellow,red)};`)
+        })
+    })
+}
 
-
+ByBulk()
 // function colorLineGraph(green,yellow,red) {
 //     return 'linear-gradient(transparent, transparent),linear-gradient(transparent, transparent),linear-gradient(to right, #30e8bf, #F90F00)'
 // }
