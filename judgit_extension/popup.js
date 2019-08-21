@@ -99,7 +99,8 @@ function jsonPostBody(jsonBody) {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'credentials': 'include', // Don't forget to specify this if you need cookies'
         },
         body: JSON.stringify(jsonBody)
       }
