@@ -18,7 +18,7 @@ module.exports = function (db, usersMiddelware) {
     })
 
     router.post('/colorTotal',(req,res)=>{
-        console.log('requested url',req.body.url);
+        console.log('requested url',req.body.url); 
         voteModel.getColorTotalUrl(req.body.url)
         .then(data=>{
             console.log('for url',req.body.url);   
