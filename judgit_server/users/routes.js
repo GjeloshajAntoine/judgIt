@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const uuidv5 = require('uuid/v5');
+const uuidv4 = require('uuid/v4');
 const userModelInit = require('./model')
+
 module.exports = function (db) {
     
     const userModel = userModelInit(db)
