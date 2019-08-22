@@ -11,9 +11,9 @@ module.exports = function (db, usersMiddelware) {
         }).catch(console.warn)
     })
 
-    router.post('/votes',(req,res)=>{
+    router.post('/votes',usersMiddelware.connectedOptional,(req,res)=>{
         let {linkId} = req.body
-        voteModel.getVotes(linkId,1)
+        voteModel.getVotes(linkId,res.locals.user.id)
         .then(res.json.bind(res))
     })
 
@@ -41,15 +41,16 @@ module.exports = function (db, usersMiddelware) {
 
     router.post('/upVote',usersMiddelware.connected,(req,res)=>{
         let {linkId,textId,color} = req.body
-        voteModel.upVote(2,linkId,textId,color).then(o=>res.json(o))
+        let userId = res.locals.user.id
+        voteModel.upVote(userId,linkId,textId,color).then(o=>res.json(o))
     })
 
-    router.post('/CreateOrUpVoteLinkId',(req,res)=>{
+    router.post('/CreateOrUpVoteLinkId',usersMiddelware.connected,(req,res)=>{
         let {linkId,text,color} = req.body
         let userId = 1
         voteModel.CreateOrUpVoteLinkId(linkId,userId,text,color).then(res.json.bind(res))
     })
-    router.post('/CreateOrUpVoteLinkUrl',(req,res)=>{
+    router.post('/CreateOrUpVoteLinkUrl',usersMiddelware.connected,(req,res)=>{
         let {url,text,color} = req.body
         let userId = 1
         voteModel.CreateOrUpVoteLinkUrl(url,userId,text,color).then(res.json.bind(res))
