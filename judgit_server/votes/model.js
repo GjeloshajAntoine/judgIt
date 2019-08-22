@@ -10,6 +10,7 @@ module.exports = function (db) {
             LEFT JOIN votetexts vt ON vt.id = text_id
             WHERE links.id = $2
             GROUP BY text_id,color,vt.text      
+            ORDER BY nbr DESC
             `,[userId,linkId] ).then(data =>{
                 let parsedRows = data.rows.map(row=>{
                     row.is_upvoted_by_current_user = parseInt(row.is_upvoted_by_current_user)
