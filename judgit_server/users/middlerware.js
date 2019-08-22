@@ -13,6 +13,6 @@ module.exports = async function (db)  {
                     res.json({error:true,msg:'not connected'})
                 }
             })
-
+        }
     }
 }
