@@ -25,7 +25,7 @@
         </div>
         <div id="colors-list">
             <div v-for="vote of colorVotes" class="color-line" >
-                <div style="float: left;" v-on:click="upVote" class="plus-one" v-bind:data-text-id="vote.text_id" v-bind:data-color="vote.color"  v-bind:class="{ selected:vote.is_upvoted_by_current_user }">
+                <div style="float: left;" v-on:click="upVote" class="plus-one" v-bind:data-text-id="vote.text_id" v-bind:data-color="vote.color" v-bind:data-is-upvoted="vote.is_upvoted_by_current_user"  v-bind:class="{ selected:vote.is_upvoted_by_current_user }">
                     +1
                 </div>
                 <div class="color-bar" v-bind:data-color="vote.color">
