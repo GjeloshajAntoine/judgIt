@@ -14,6 +14,7 @@ const urlProm = currentTab.then(tabs => {
 })
 
 fapi = NewFapi('http://localhost:3000')
+fapi('/users/token').then(res=>res.json()).then(data=>console.log('user token msg :',data))
 let linkIdProm = urlProm.then(url=> fapi('/votes/linkId',jsonPostBody({url,url}))).then(resp=>resp.json()).then(data=>data.id) 
 
 let app = new Vue({
