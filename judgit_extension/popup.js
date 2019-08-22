@@ -79,12 +79,16 @@ let app = new Vue({
         upVote: async function (event) {
             let textId = event.target.dataset.textId
             let color = event.target.dataset.color
-            fapi('/votes/upvote',jsonPostBody({textId:textId,linkId: await linkIdProm,color:color}))
+            let isUpvoted = parseInt(event.target.dataset.isUpvoted)
+
+            let upOrUnVote = isUpvoted ? '/votes/unVote' :'/votes/upVote'
+
+            fapi(upOrUnVote,jsonPostBody({textId:textId,linkId: await linkIdProm,color:color}))
             .then(resp=>resp.json())
             .then(async o=>fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})))
             .then(resp=>resp.json())
             .then(votes=>this.colorVotes = votes)
-        }
+        },
     }
 })
 
