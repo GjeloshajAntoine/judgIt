@@ -33,9 +33,9 @@ module.exports = function (db) {
                 return data.rows
             })
         },
-        unVote : function (userId,linkId,text_id,color) {
-            return db.query('DELETE FROM votes WHERE user_id = $1 AND lind_id = $2 AND text_id = $3',
-            [userId,linkId,text_id]).then(data=>{
+        unVote : function (userId,linkId,textId,color) {
+            return db.query('DELETE FROM votes WHERE user_id = $1 AND link_id = $2 AND text_id = $3 AND color = $4',
+            [userId,linkId,textId,color]).then(data=>{
                 return data.rows
             })
         },

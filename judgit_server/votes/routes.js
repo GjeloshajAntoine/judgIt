@@ -45,6 +45,11 @@ module.exports = function (db, usersMiddelware) {
         voteModel.upVote(userId,linkId,textId,color).then(o=>res.json(o))
     })
 
+    router.post('/unVote',usersMiddelware.connected,(req,res)=>{
+        let {linkId,textId,color} = req.body
+        voteModel.unVote(res.locals.user.id,linkId,textId,color).then(o=>res.json(o))
+    })
+
     router.post('/CreateOrUpVoteLinkId',usersMiddelware.connected,(req,res)=>{
         let {linkId,text,color} = req.body
         let userId = 1
