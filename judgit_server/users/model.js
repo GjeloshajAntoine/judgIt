@@ -8,8 +8,8 @@ module.exports = function (db) {
         },
         getUserIdByExtensionToken : function (token) {
             return db.query('SELECT id FROM users WHERE extension_token = $1',
-            [token]).then(token=>{
-                return data.rows.length ? data.rows[0].id : false  
+            [token]).then(data=>{
+                return data.rows.length ? data.rows[0].id : 0  
             })
         }
     }
