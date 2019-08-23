@@ -52,12 +52,12 @@ module.exports = function (db, usersMiddelware) {
 
     router.post('/CreateOrUpVoteLinkId',usersMiddelware.connected,(req,res)=>{
         let {linkId,text,color} = req.body
-        let userId = 1
+        let userId = res.locals.user.id
         voteModel.CreateOrUpVoteLinkId(linkId,userId,text,color).then(res.json.bind(res))
     })
     router.post('/CreateOrUpVoteLinkUrl',usersMiddelware.connected,(req,res)=>{
         let {url,text,color} = req.body
-        let userId = 1
+        let userId = res.locals.user.id
         voteModel.CreateOrUpVoteLinkUrl(url,userId,text,color).then(res.json.bind(res))
     })
 
