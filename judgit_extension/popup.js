@@ -7,7 +7,6 @@
 
 let currentTab = new Promise((resolve, reject) => chrome.tabs.query({ active: true, currentWindow: true }, resolve))
 const urlProm = currentTab.then(tabs => {
-    console.log(tabs[0]);
     document.querySelector('#title').innerText = tabs[0].title
     document.getElementById('url').innerText = tabs[0].url
     return  tabs[0].url;
