@@ -62,11 +62,10 @@ function ByBulk() {
             yellow = ((parseFloat(yellow) / parseFloat(colorTotal))*100)
             red = ((parseFloat(red) / parseFloat(colorTotal))*100)
             if(!green) {//dummy data
-                green = 30
-                yellow = 50
-                red = 20
+
+            } else {
+                document.styleSheets[0].addRule(`a[href="${url}"]:hover::after{background:${colorLineGraph(green,yellow,red)};`)
             }
-            document.styleSheets[0].addRule(`a[href="${url}"]:hover::after{background:${colorLineGraph(green,yellow,red)};`)
         })
     })
 }
