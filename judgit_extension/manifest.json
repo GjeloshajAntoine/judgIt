@@ -8,6 +8,9 @@
     "tabs",
     "<all_urls>"
   ],
+  "icons":{
+    "48":"incon_48_21.png"
+  },
   "content_scripts": [
     {
       "matches": [
