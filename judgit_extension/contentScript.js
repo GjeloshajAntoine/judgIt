@@ -1,7 +1,7 @@
 console.log('contentscipt_');
 
 function ByBulk() {
-    let aElems = Array.from( document.querySelectorAll('a'))
+    let aElems = Array.from(document.querySelectorAll('a'))
     let urls = aElems.map(e=>{
         return e.href
     }) 
