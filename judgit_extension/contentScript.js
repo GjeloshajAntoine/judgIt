@@ -1,43 +1,5 @@
 console.log('contentscipt_');
 
-//console.log(document.querySelectorAll('a'));
-function oneByone() {
-    document.querySelectorAll('a').forEach(e=> {
-        console.log('before fetch');
-        e.style.backgroundImage = colorLineGraph()
-        let url = e.href
-        if (!url) return ;
-        fetch('http://localhost:3000/votes/colorTotal',
-         {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({url: url})
-          }
-        )
-        .then(res=>{
-            return res.json().catch(console.log)
-        })
-        .then(colors=>{
-            if(colors.hasOwnProperty('url')) console.log(colors)
-            e.addEventListener('mouseover', function () {
-                //this.style.backgroundImage = colorLineGraph(colors.green,colors.yellow,colors.red)
-                // this.dataset.color = colorLineGraph(50,10,40)
-                // this.style.backgroundImage = 'linear-gradient(transparent, transparent),linear-gradient(transparent, transparent),linear-gradient(to right, #30e8bf, #F90F00)'
-               
-                //TODO:
-                document.styleSheets[0].addRule(`a[href="${url}"]:hover::after{background:${colorLineGraph(50,10,40)};`)
-            })
-            e.addEventListener('mouseout',function () {
-                this.style.backgroundImage = ''
-            })
-        })
-        
-    })  
-}
-
 function ByBulk() {
     let aElems = Array.from( document.querySelectorAll('a'))
     let urls = aElems.map(e=>{
