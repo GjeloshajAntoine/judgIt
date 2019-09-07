@@ -26,8 +26,8 @@ app.listen(port, function () {
     console.log('judgit server listening on port ' + port)
 })
 
+console.info('pushing something to test hook')
 
-'pushing something to test hook'
 function logInternalError(req,res,next) {
     
 }
