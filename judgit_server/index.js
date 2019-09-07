@@ -20,8 +20,10 @@ app.use('/judgit', admin())
 app.use('/users', users(client))
 app.use('/votes', votes(client, usersMiddelware(client)))
 
-app.listen(80, function () {
-    console.log('Example app listening on port 3000!')
+let port = process.env.node_port ? process.env.node_port : 3000
+
+app.listen(port, function () {
+    console.log('judgit server listening on port ' + port)
 })
 
 
