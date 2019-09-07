@@ -10,7 +10,7 @@ module.exports =  function (db)  {
                     res.locals.user = {id: userId}
                     next()
                 } else {
-                    res.json({error:true,msg:'not connected'})
+                    res.status(400).json({error:true,msg:'not connected'})
                 }
             })
         },
