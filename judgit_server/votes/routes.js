@@ -53,12 +53,20 @@ module.exports = function (db, usersMiddelware) {
     router.post('/CreateOrUpVoteLinkId', usersMiddelware.connected, (req, res) => {
         let { linkId, text, color } = req.body
         let userId = res.locals.user.id
-        voteModel.CreateOrUpVoteLinkId(linkId, userId, text, color).then(res.json.bind(res))
+        if (text) {
+            voteModel.CreateOrUpVoteLinkId(linkId, userId, text, color).then(res.json.bind(res))
+        } else {
+            res.status(400).json({error:true,msg:'no text'})
+        }
     })
     router.post('/CreateOrUpVoteLinkUrl', usersMiddelware.connected, (req, res) => {
         let { url, text, color } = req.body
         let userId = res.locals.user.id
-        voteModel.CreateOrUpVoteLinkUrl(url, userId, text, color).then(res.json.bind(res))
+        if (text) {
+            voteModel.CreateOrUpVoteLinkUrl(url, userId, text, color).then(res.json.bind(res))
+        } else {
+            res.status(400).json({error:true,msg:'no text'})
+        }
     })
 
     router.get('/autocompleteText/:text/:n?',(req,res)=>{
