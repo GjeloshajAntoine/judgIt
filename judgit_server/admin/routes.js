@@ -7,6 +7,7 @@ module.exports = function () {
     router.post('/git/hooks/push',(res,req)=>{
         console.log('received push from github');
         let mainFolder = path.dirname(require.main.filename)
+        console.log('path is :',mainFolder);
         exec('git pull origin master',{pwd:mainFolder},(err=>{
             if (err) {
                 console.error('Error in git push hook ,pull command returned:')
