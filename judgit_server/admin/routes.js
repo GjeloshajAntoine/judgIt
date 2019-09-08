@@ -8,7 +8,7 @@ module.exports = function () {
         console.log('received push from github');
         let mainFolder = path.dirname(require.main.filename)
         console.log('path is :',mainFolder);
-        exec('git pull origin master',{pwd:mainFolder},(err=>{
+        exec('git pull origin master',{cwd:mainFolder},(err=>{
             if (err) {
                 console.error('Error in git push hook ,pull command returned:')
                 console.error(err)
