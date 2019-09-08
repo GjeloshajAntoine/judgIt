@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 
 module.exports = function () {
 
-    router.post('/git/hooks/push',(res,req)=>{
+    router.post('/git/hooks/push',(req,res)=>{
         console.log('received push from github');
         let mainFolder = path.dirname(require.main.filename)
         console.log('path is :',mainFolder);
@@ -16,6 +16,7 @@ module.exports = function () {
                 console.log('git pull looks okay')        
             }
         }))
+        res.status(200).json({})
     })
     router.get('/version',(req,res)=>{
         let mainFolder = path.dirname(require.main.filename)
