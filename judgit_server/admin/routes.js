@@ -21,7 +21,7 @@ module.exports = function () {
     router.get('/version',(req,res)=>{
         let mainFolder = path.dirname(require.main.filename)
         console.log(mainFolder);
-        res.json({test:mainFolder})
+        res.json({version:'0.9'})
     })
     return router
 }
