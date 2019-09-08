@@ -59,6 +59,7 @@ let app = new Vue({
             let color = this.input.color
             let linkId = await linkIdProm;
             //console.warn(linkId);
+            if (!text) return false;
             
             (linkId ? fapi('/votes/CreateOrUpVoteLinkId',jsonPostBody({linkId:linkId,text:text,color:color})) :
             fapi('/votes/CreateOrUpVoteLinkUrl',jsonPostBody({url:await urlProm,text:text,color:color}))
