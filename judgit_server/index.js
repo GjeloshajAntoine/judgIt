@@ -23,6 +23,8 @@ app.use('/votes', votes(client, usersMiddelware(client)))
 
 
 if (process.env.node_env == "prod") {
+    console.log('this is prod');
+    
     const privateKey = fs.readFileSync('/etc/letsencrypt/live/judgit.site/privkey.pem', 'utf8');
     const certificate = fs.readFileSync('/etc/letsencrypt/live/judgit.site/cert.pem', 'utf8');
     const ca = fs.readFileSync('/etc/letsencrypt/live/judgit.site/chain.pem', 'utf8');
