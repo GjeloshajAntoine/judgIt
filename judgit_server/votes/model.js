@@ -48,6 +48,8 @@ module.exports = function (db) {
         },
         CreateOrUpVoteLinkUrl: function (linkUrl, userId, VoteText, VoteColor) {
             //"SELECT CreateOrUpVoteLinkUrl(1,'http://','other new comment','')"
+            console.log('CreateOrUpVoteLinkUrl',arguments);
+            
             return db.query('SELECT createorupvotelinkurl($1,$2,$3,$4::colors)',
                 [userId, linkUrl, VoteText, VoteColor]
             ).then(data => {
