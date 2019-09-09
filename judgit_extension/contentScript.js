@@ -5,7 +5,7 @@ function ByBulk() {
     let urls = aElems.map(e=>{
         return e.href
     }) 
-    fetch('http://localhost:3000/votes/colorTotalBulk',
+    fetch('https://judgit.site/votes/colorTotalBulk',
     {
         method: 'POST',
         headers: {
