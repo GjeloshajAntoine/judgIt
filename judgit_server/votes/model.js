@@ -52,7 +52,7 @@ module.exports = function (db) {
                 [userId, linkUrl, VoteText, VoteColor]
             ).then(data => {
                 return data.rows.length ? data.rows : []
-            }).catch(console.error)
+            }).catch(e=>console.error(e))
         },
         getTextLike : function (text,limit) {   
             let formatedText = '%' + text + '%'
