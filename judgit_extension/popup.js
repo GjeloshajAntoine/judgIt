@@ -12,7 +12,7 @@ const urlProm = currentTab.then(tabs => {
     return  tabs[0].url;
 })
 
-fapi = NewFapi('http://localhost:3000')
+fapi = NewFapi('https://judgit.site')
 fapi('/users/token').then(res=>res.json()).then(data=>console.log('user token msg :',data))
 let linkIdProm = urlProm.then(url=> fapi('/votes/linkId',jsonPostBody({url,url}))).then(resp=>resp.json()).then(data=>data.id) 
 
@@ -74,7 +74,10 @@ let app = new Vue({
             })
             .then(async o=>fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})))
             .then(res=>res.json())
-            .then(votes=>{this.colorVotes = votes})
+            .then(votes=>{
+                this.colorVotes = votes
+                this.input.text = ''
+            })
         },
         upVote: async function (event) {
             let textId = event.target.dataset.textId
