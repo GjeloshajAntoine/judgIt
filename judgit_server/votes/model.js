@@ -23,7 +23,6 @@ module.exports = function (db) {
         getColorTotalUrl: function (link) {
             let res = db.query('SELECT * FROM links WHERE url = $1', [link])
             return res.then(data => {
-                console.log('link from db :', data.rows.length ? data.rows[0] : '');
                 return data.rows.length ? data.rows[0] : {}
             }).catch(console.error);
         },
@@ -40,16 +39,12 @@ module.exports = function (db) {
                 })
         },
         CreateOrUpVoteLinkId: function (linkId, userId, VoteText, VoteColor) {
-            //"SELECT CreateOrUpVoteLinkId(1,1,'other new comment','')"
             return db.query('SELECT  CreateOrUpVoteLinkId($1,$2,$3,$4::colors)',
                 [userId, linkId, VoteText, VoteColor]).then(data => {
                     return data.rows.length ? data.rows : []
                 }).catch(console.warn)
         },
         CreateOrUpVoteLinkUrl: function (linkUrl, userId, VoteText, VoteColor) {
-            //"SELECT CreateOrUpVoteLinkUrl(1,'http://','other new comment','')"
-            console.log('CreateOrUpVoteLinkUrl',arguments);
-            
             return db.query('SELECT createorupvotelinkurl($1,$2,$3,$4::colors)',
                 [userId, linkUrl, VoteText, VoteColor]
             ).then(data => {
