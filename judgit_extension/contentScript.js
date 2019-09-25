@@ -26,7 +26,10 @@ function ByBulk() {
             if(!green) {//dummy data
 
             } else {
-                document.styleSheets[0].addRule(`a[href="${url}"]:hover::after{background:${colorLineGraph(green,yellow,red)};`)
+                document.styleSheets[0].addRule(`a[href="${url}"]:hover::after{
+                    background:${colorLineGraph(green,yellow,red)};
+                    margin-top: -6px;
+                    `)
             }
         })
     })
