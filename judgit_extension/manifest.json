@@ -9,7 +9,8 @@
     "<all_urls>"
   ],
   "icons":{
-    "48":"incon_48_21.png"
+    "48":"incon_48_21.png",
+    "128":"incon_128_21.png"
   },
   "content_scripts": [
     {
