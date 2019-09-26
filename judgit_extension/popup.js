@@ -12,7 +12,7 @@ const urlProm = currentTab.then(tabs => {
     return  tabs[0].url;
 })
 
-fapi = NewFapi('https://judgit.site')
+fapi = NewFapi(chrome.runtime.getManifest().endPoint)
 fapi('/users/token').then(res=>res.json()).then(data=>console.log('user token msg :',data))
 let linkIdProm = urlProm.then(url=> fapi('/votes/linkId',jsonPostBody({url,url}))).then(resp=>resp.json()).then(data=>data.id) 
 

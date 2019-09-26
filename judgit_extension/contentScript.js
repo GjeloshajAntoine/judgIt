@@ -5,7 +5,7 @@ function ByBulk() {
     let urls = aElems.map(e=>{
         return e.href
     }) 
-    fetch('https://judgit.site/votes/colorTotalBulk',
+    fetch(chrome.runtime.getManifest().endPoint+'/votes/colorTotalBulk',
     {
         method: 'POST',
         headers: {
