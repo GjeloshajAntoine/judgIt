@@ -19,7 +19,7 @@ The backend is a node server with a postgresql db , the following instruction an
 
 1. In google chrome , go to `chrome://extensions/` and check `developper mode` in the upper right corner.
 
-2.Under the blue bar ,click on `load unpacked extension` and chose the `judgit_extension` folder.Now the extension icon should appear in the chrome bar.
+2. Under the blue bar ,click on `load unpacked extension` and chose the `judgit_extension` folder.Now the extension icon should appear in the chrome bar.
 
 ## Use it !
 
