@@ -40,7 +40,7 @@ if (process.env.node_env == "prod") {
     }); 
 }
 
-let port = process.env.node_port ? process.env.node_port : 3000
+let port = process.env.node_port ? process.env.node_port : config.defaultPort
 
 app.listen(port, function () {
     console.log('judgit server listening on port ' + port)
