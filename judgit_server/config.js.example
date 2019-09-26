@@ -5,5 +5,6 @@ module.exports = {
         database: 'judgeit',
         password: '',
         port: 5432,
-      }
+      },
+    defaultPort :3000
 }
