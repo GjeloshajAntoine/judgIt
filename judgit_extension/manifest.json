@@ -9,8 +9,8 @@
     "<all_urls>"
   ],
   "icons":{
-    "48":"incon_48_21.png",
-    "128":"incon_128_21.png"
+    "48":"incon_48_24.png",
+    "128":"incon_128_24.png"
   },
   "content_scripts": [
     {
@@ -29,5 +29,5 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
-  "endPoint":"http://localhost:3000"
+  "endPoint":"https://judgit.site"
 }
