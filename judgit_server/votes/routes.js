@@ -13,6 +13,7 @@ module.exports = function (db, usersMiddelware) {
 
     router.post('/votes', usersMiddelware.connectedOptional, (req, res) => {
         let { linkId } = req.body
+        linkId = linkId ? linkId : 0
         voteModel.getVotes(linkId, res.locals.user.id)
             .then(res.json.bind(res))
     })
