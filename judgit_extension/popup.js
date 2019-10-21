@@ -23,27 +23,7 @@ let app = new Vue({
             color:'yellow',
             text:''
         },
-        colorVotes:[
-
-        ],
-        colorVotesExample: [
-            {
-                color: 'yellow',
-                text: 'spawn',
-                text_id:2,
-                nbr: 285,
-                percentage:50,
-                is_upvoted_by_current_user: 0
-            },
-            {
-                color: 'red',
-                text: 'you 50ct',
-                text_id:4,
-                nbr: 285,
-                percentage:50,
-                is_upvoted_by_current_user: 1
-            }
-        ]
+        colorVotes:[]
     },
     created:async function () {
        await linkIdProm ? fapi('/votes/votes',jsonPostBody({linkId:await linkIdProm})).then(res=>res.json())
