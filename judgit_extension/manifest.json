@@ -1,7 +1,7 @@
 {
   "name": "JudgIt",
   "version": "1",
-  "description": "Judge pages collorfully",
+  "description": "Comment pages collorfully",
   "manifest_version": 2,
   "permissions": [
     "activeTab",
