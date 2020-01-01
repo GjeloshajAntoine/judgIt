@@ -1,0 +1,33 @@
+{
+  "name": "JudgIt Vue",
+  "version": "1",
+  "description": "Comment pages collorfully",
+  "manifest_version": 2,
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "<all_urls>"
+  ],
+  "icons":{
+    "48":"incon_48_24.png",
+    "128":"incon_128_24.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "contentStyle.css"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "endPoint":"https://judgit.site"
+}
