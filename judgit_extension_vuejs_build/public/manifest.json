@@ -1,5 +1,5 @@
 {
-  "name": "JudgIt Vue",
+  "name": "JudgIt",
   "version": "1",
   "description": "Comment pages collorfully",
   "manifest_version": 2,
@@ -9,8 +9,7 @@
     "<all_urls>"
   ],
   "icons":{
-    "48":"incon_48_24.png",
-    "128":"incon_128_24.png"
+    "128":"Rectangle 1cut (1).png"
   },
   "content_scripts": [
     {
