@@ -1,0 +1,32 @@
+{
+  "name": "JudgIt",
+  "version": "1",
+  "description": "Comment pages collorfully",
+  "manifest_version": 2,
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "<all_urls>"
+  ],
+  "icons":{
+    "128":"Rectangle 1cut (1).png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "contentStyle.css"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "endPoint":"https://judgit.site"
+}

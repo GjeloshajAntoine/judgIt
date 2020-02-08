@@ -1,0 +1,18 @@
+a:hover::after {
+	display: inline;
+	content: '';
+	min-width: 100px;
+	min-height: 8px;
+	text-decoration: none;
+  	/* background-image: linear-gradient(transparent, transparent),linear-gradient(transparent, transparent),linear-gradient(to right, #30e8bf, #ff8235); */
+  	background-repeat: no-repeat;
+	background-position: 120%, 122%, 0 130%;
+    display: block;
+    position: absolute;
+	background-size: 100% 10px;
+	border-radius: 19px;
+	max-width: 100px;
+	display: inline-block;
+	z-index: 1000;
+	background-image: attr(data-color)
+}
