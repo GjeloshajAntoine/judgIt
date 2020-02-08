@@ -1,4 +1,5 @@
 /judgit_server/config.js
 /judgit_server/node_modules
+/judgit_extension_vuejs_build/node_modules
 names.txt
 /.vscode
